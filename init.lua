@@ -91,7 +91,7 @@ vim.g.mapleader = ' '
 vim.g.maplocalleader = ' '
 
 -- Set to true if you have a Nerd Font installed and selected in the terminal
-vim.g.have_nerd_font = false
+vim.g.have_nerd_font = true
 
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -149,7 +149,7 @@ vim.opt.splitbelow = true
 --  See `:help 'list'`
 --  and `:help 'listchars'`
 vim.opt.list = true
-vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣' }
+vim.opt.listchars = { tab = '» ', trail = '·', nbsp = '␣', multispace = '·' }
 
 -- Preview substitutions live, as you type!
 vim.opt.inccommand = 'split'
@@ -182,10 +182,10 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' })
 
 -- TIP: Disable arrow keys in normal mode
--- vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
--- vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
--- vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
--- vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
+vim.keymap.set('n', '<left>', '<cmd>echo "Use h to move!!"<CR>')
+vim.keymap.set('n', '<right>', '<cmd>echo "Use l to move!!"<CR>')
+vim.keymap.set('n', '<up>', '<cmd>echo "Use k to move!!"<CR>')
+vim.keymap.set('n', '<down>', '<cmd>echo "Use j to move!!"<CR>')
 
 -- Keybinds to make split navigation easier.
 --  Use CTRL+<hjkl> to switch between windows
@@ -621,7 +621,7 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
-        ts_ls = {},
+        -- ts_ls = {},
 
         lua_ls = {
           -- cmd = {...},
@@ -937,6 +937,12 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
 
   { 'nvim-tree/nvim-tree.lua', opts = {} },
+
+  {
+    'pmizio/typescript-tools.nvim',
+    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
+    opts = { expose_as_code_action = 'all' },
+  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
