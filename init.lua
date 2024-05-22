@@ -677,6 +677,7 @@ require('lazy').setup({
           typescriptreact = true,
           dockerfile = true,
           ['yaml.docker-compose'] = true,
+          jsonc = true,
         }
 
         return {
