@@ -718,6 +718,7 @@ require('lazy').setup({
           typescriptreact = true,
           dockerfile = true,
           ['yaml.docker-compose'] = true,
+          jsonc = true,
         }
         local lsp_format_opt
         if disable_filetypes[vim.bo[bufnr].filetype] then
