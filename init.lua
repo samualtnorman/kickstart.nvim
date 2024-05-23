@@ -592,8 +592,20 @@ require('lazy').setup({
         --    https://github.com/pmizio/typescript-tools.nvim
         --
         -- But for many setups, the LSP (`tsserver`) will work just fine
-        -- tsserver = {},
-
+        tsserver = {
+          settings = { typescript = { format = { convertTabsToSpaces = false } } },
+          commands = {
+            OrganizeImports = {
+              function()
+                vim.lsp.buf.execute_command {
+                  command = '_typescript.organizeImports',
+                  arguments = { vim.api.nvim_buf_get_name(0) },
+                }
+              end,
+              description = 'Organize Imports',
+            },
+          },
+        },
         lua_ls = {
           -- cmd = {...},
           -- filetypes = { ...},
@@ -923,12 +935,6 @@ require('lazy').setup({
   -- { import = 'custom.plugins' },
 
   { 'nvim-tree/nvim-tree.lua', opts = { filters = { enable = false } } },
-
-  {
-    'pmizio/typescript-tools.nvim',
-    dependencies = { 'nvim-lua/plenary.nvim', 'neovim/nvim-lspconfig' },
-    opts = { expose_as_code_action = 'all' },
-  },
 }, {
   ui = {
     -- If you are using a Nerd Font: set icons to an empty table which will use the
